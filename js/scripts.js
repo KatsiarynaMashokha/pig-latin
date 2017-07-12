@@ -2,6 +2,7 @@
 var vowels = ["a", "e", "i", "o", "u"];
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x","y", "z"];
 var finalText = [];
+var numbersArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var ayString = "ay";
 
 var translatedText = function(userInput) {
@@ -13,9 +14,11 @@ var translatedText = function(userInput) {
     finalText = userInput.substring(2) + "quay";
     console.log(finalText);
   }
-  else if (!alphabet.includes(userInput)) {
+  else if (!(/^[a-zA-Z]+$/.test(userInput))) {
     alert("Please enter valid text");
+    return;
   }
+
 
 else  {
   var removedLettersArray = [];
@@ -59,6 +62,7 @@ $(document).ready(function() {
   $("form#pig-latin").submit(function(event) {
     event.preventDefault();
     var userInput = $("input#userInput").val();
+    //var userInput = $("input#userInput").val().split(" ");
     var result = translatedText(userInput);
   });
 });
